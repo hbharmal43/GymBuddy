@@ -1,4 +1,4 @@
-<h1 align="center">Tinder Clone ✨</h1>
+
 
 
 
