@@ -8,120 +8,127 @@ const SignUpForm = () => {
 	const [gender, setGender] = useState("");
 	const [age, setAge] = useState("");
 	const [genderPreference, setGenderPreference] = useState("");
+	const [emailError, setEmailError] = useState(""); // New state for email error
 
 	const { signup, loading } = useAuthStore();
 
+	const handleSubmit = (e) => {
+		e.preventDefault();
+		// Validate email domain
+		if (!email.endsWith("@mavs.uta.edu")) {
+			setEmailError("Only emails ending with @mavs.uta.edu are accepted.");
+			return;
+		}
+		setEmailError(""); // Clear any previous error
+		signup({ name, email, password, gender, age, genderPreference });
+	};
+
 	return (
-		<form
-			className='space-y-6'
-			onSubmit={(e) => {
-				e.preventDefault();
-				signup({ name, email, password, gender, age, genderPreference });
-			}}
-		>
+		<form className="space-y-6" onSubmit={handleSubmit}>
 			{/* NAME */}
 			<div>
-				<label htmlFor='name' className='block text-sm font-medium text-gray-700'>
+				<label htmlFor="name" className="block text-sm font-medium text-gray-700">
 					Name
 				</label>
-				<div className='mt-1'>
+				<div className="mt-1">
 					<input
-						id='name'
-						name='name'
-						type='text'
+						id="name"
+						name="name"
+						type="text"
 						required
 						value={name}
 						onChange={(e) => setName(e.target.value)}
-						className='appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-orange-500 focus:border-orange-500 sm:text-sm'
+						className="appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-orange-500 focus:border-orange-500 sm:text-sm"
 					/>
 				</div>
 			</div>
 
 			{/* EMAIL */}
 			<div>
-				<label htmlFor='email' className='block text-sm font-medium text-gray-700'>
+				<label htmlFor="email" className="block text-sm font-medium text-gray-700">
 					Email address
 				</label>
-				<div className='mt-1'>
+				<div className="mt-1">
 					<input
-						id='email'
-						name='email'
-						type='email'
-						autoComplete='email'
+						id="email"
+						name="email"
+						type="email"
+						autoComplete="email"
 						required
 						value={email}
 						onChange={(e) => setEmail(e.target.value)}
-						className='appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-orange-500 focus:border-orange-500 sm:text-sm'
+						className="appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-orange-500 focus:border-orange-500 sm:text-sm"
 					/>
 				</div>
+				{emailError && <p className="text-red-500 text-sm mt-2">{emailError}</p>}
 			</div>
 
 			{/* PASSWORD */}
 			<div>
-				<label htmlFor='password' className='block text-sm font-medium text-gray-700'>
+				<label htmlFor="password" className="block text-sm font-medium text-gray-700">
 					Password
 				</label>
-				<div className='mt-1'>
+				<div className="mt-1">
 					<input
-						id='password'
-						name='password'
-						type='password'
-						autoComplete='new-password'
+						id="password"
+						name="password"
+						type="password"
+						autoComplete="new-password"
 						required
 						value={password}
 						onChange={(e) => setPassword(e.target.value)}
-						className='appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-orange-500 focus:border-orange-500 sm:text-sm'
+						className="appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-orange-500 focus:border-orange-500 sm:text-sm"
 					/>
 				</div>
 			</div>
 
 			{/* AGE */}
 			<div>
-				<label htmlFor='age' className='block text-sm font-medium text-gray-700'>
+				<label htmlFor="age" className="block text-sm font-medium text-gray-700">
 					Age
 				</label>
-				<div className='mt-1'>
+				<div className="mt-1">
 					<input
-						id='age'
-						name='age'
-						type='number'
+						id="age"
+						name="age"
+						type="number"
 						required
 						value={age}
 						onChange={(e) => setAge(e.target.value)}
-						min='18'
-						max='120'
-						className='appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-orange-500 focus:border-orange-500 sm:text-sm'
+						min="18"
+						max="120"
+						className="appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-orange-500 focus:border-orange-500 sm:text-sm"
 					/>
 				</div>
 			</div>
 
 			{/* GENDER */}
 			<div>
-				<label className='block text-sm font-medium text-gray-700'>Your Gender</label>
-				<div className='mt-2 flex gap-2'>
-					<div className='flex items-center'>
+				<label className="block text-sm font-medium text-gray-700">Your Gender</label>
+				<div className="mt-2 flex gap-2">
+					<div className="flex items-center">
 						<input
-							id='male'
-							name='gender'
-							type='checkbox'
+							id="male"
+							name="gender"
+							type="checkbox"
 							checked={gender === "male"}
 							onChange={() => setGender("male")}
-							className='h-4 w-4 text-orange-600 focus:ring-orange-500 border-gray-300 rounded'
+							className="h-4 w-4 text-orange-600 focus:ring-orange-500 border-gray-300 rounded"
 						/>
-						<label htmlFor='male' className='ml-2 block text-sm text-gray-900'>
-							Begineer
+						<label htmlFor="male" className="ml-2 block text-sm text-gray-900">
+							Beginner
 						</label>
 					</div>
-					<div className='flex items-center'>
+					<div className="flex items-center">
 						<input
-							id='female'
-							name='gender'
-							type='checkbox'
+							id="female"
+							name="gender"
+							type="checkbox"
 							checked={gender === "female"}
 							onChange={() => setGender("female")}
-							className='h-4 w-4 text-orange-600 focus:ring-orange-500 border-gray-300 rounded'
+							className="h-4 w-4 text-orange-600 focus:ring-orange-500 border-gray-300 rounded"
 						/>
-						<label htmlFor='female' className='ml-2 block text-sm text-gray-900'>
+						<label htmlFor="female" className="ml-2 block text-sm text-gray-900">
 							Advanced
 						</label>
 					</div>
@@ -130,47 +137,47 @@ const SignUpForm = () => {
 
 			{/* GENDER PREFERENCE */}
 			<div>
-				<label className='block text-sm font-medium text-gray-700'>Prefer Me</label>
-				<div className='mt-2 space-y-2'>
-					<div className='flex items-center'>
+				<label className="block text-sm font-medium text-gray-700">Prefer Me</label>
+				<div className="mt-2 space-y-2">
+					<div className="flex items-center">
 						<input
-							id='prefer-male'
-							name='gender-preference'
-							type='radio'
-							value='male'
+							id="prefer-male"
+							name="gender-preference"
+							type="radio"
+							value="male"
 							checked={genderPreference === "male"}
 							onChange={(e) => setGenderPreference(e.target.value)}
-							className='h-4 w-4 text-orange-600 focus:ring-orange-500 border-gray-300'
+							className="h-4 w-4 text-orange-600 focus:ring-orange-500 border-gray-300"
 						/>
-						<label htmlFor='prefer-male' className='ml-2 block text-sm text-gray-900'>
+						<label htmlFor="prefer-male" className="ml-2 block text-sm text-gray-900">
 							Beginner
 						</label>
 					</div>
-					<div className='flex items-center'>
+					<div className="flex items-center">
 						<input
-							id='prefer-female'
-							name='gender-preference'
-							type='radio'
-							value='female'
+							id="prefer-female"
+							name="gender-preference"
+							type="radio"
+							value="female"
 							checked={genderPreference === "female"}
 							onChange={(e) => setGenderPreference(e.target.value)}
-							className='h-4 w-4 text-orange-600 focus:ring-orange-500 border-gray-300'
+							className="h-4 w-4 text-orange-600 focus:ring-orange-500 border-gray-300"
 						/>
-						<label htmlFor='prefer-female' className='ml-2 block text-sm text-gray-900'>
-							Advance
+						<label htmlFor="prefer-female" className="ml-2 block text-sm text-gray-900">
+							Advanced
 						</label>
 					</div>
-					<div className='flex items-center'>
+					<div className="flex items-center">
 						<input
-							id='prefer-both'
-							name='gender-preference'
-							type='radio'
-							value='both'
+							id="prefer-both"
+							name="gender-preference"
+							type="radio"
+							value="both"
 							checked={genderPreference === "both"}
 							onChange={(e) => setGenderPreference(e.target.value)}
-							className='h-4 w-4 text-orange-600 focus:ring-orange-500 border-gray-300'
+							className="h-4 w-4 text-orange-600 focus:ring-orange-500 border-gray-300"
 						/>
-						<label htmlFor='prefer-both' className='ml-2 block text-sm text-gray-900'>
+						<label htmlFor="prefer-both" className="ml-2 block text-sm text-gray-900">
 							Anyone
 						</label>
 					</div>
@@ -179,7 +186,7 @@ const SignUpForm = () => {
 
 			<div>
 				<button
-					type='submit'
+					type="submit"
 					className={`w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white ${
 						loading
 							? "bg-orange-400 cursor-not-allowed"
