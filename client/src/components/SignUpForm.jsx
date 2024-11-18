@@ -104,7 +104,7 @@ const SignUpForm = () => {
 
 			{/* GENDER */}
 			<div>
-				<label className="block text-sm font-medium text-gray-700">Your Gender</label>
+				<label className="block text-sm font-medium text-gray-700">Fitness Level Selection</label>
 				<div className="mt-2 flex gap-2">
 					<div className="flex items-center">
 						<input
@@ -137,7 +137,7 @@ const SignUpForm = () => {
 
 			{/* GENDER PREFERENCE */}
 			<div>
-				<label className="block text-sm font-medium text-gray-700">Prefer Me</label>
+				<label className="block text-sm font-medium text-gray-700">Fitness Level Preference</label>
 				<div className="mt-2 space-y-2">
 					<div className="flex items-center">
 						<input

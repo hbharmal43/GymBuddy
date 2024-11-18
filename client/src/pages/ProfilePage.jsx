@@ -82,7 +82,7 @@ const ProfilePage = () => {
 
 							{/* GENDER */}
 							<div>
-								<span className='block text-sm font-medium text-gray-700 mb-2'>Gender</span>
+								<span className='block text-sm font-medium text-gray-700 mb-2'>Fitness Level Selection</span>
 								<div className='flex space-x-4'>
 									{["Male", "Female"].map((option) => (
 										<label key={option} className='inline-flex items-center'>
@@ -102,7 +102,7 @@ const ProfilePage = () => {
 
 							{/* GENDER PREFERENCE */}
 							<div>
-								<span className='block text-sm font-medium text-gray-700 mb-2'>Preference</span>
+								<span className='block text-sm font-medium text-gray-700 mb-2'>Fitness Level Preference</span>
 								<div className='flex space-x-4'>
 									{["Male", "Female", "Both"].map((option) => (
 										<label key={option} className='inline-flex items-center'>
