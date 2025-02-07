@@ -3,6 +3,7 @@
 GymBuddy is a web application designed to connect students at the University of Texas at Arlington (UTA) with compatible workout partners. By fostering fitness accountability and providing essential tools like profile matching, a chat feature, a streak counter, and a weekly program planner, GymBuddy creates a community-driven platform for achieving fitness goals.
 
 ---
+<a href = "https://gymbuddy-761d.onrender.com/auth"> Try it Out </a>
 
 ## 🚀 Features
 
@@ -83,6 +84,7 @@ Access the Application
 Once the server is running, open your browser and navigate to:
 
 http://localhost:3000
+
 
 📧 Contact
 For questions, suggestions, or contributions, please reach out to:
